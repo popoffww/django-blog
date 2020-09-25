@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import home, posts_list, tags_list
+from .views import home, posts, post_detail, tags
 
 urlpatterns = [
     path('', home, name='home'),
-    path('posts/', posts_list, name='posts'),
-    path('tags/', tags_list, name='tags'),
+    path('posts/', posts, name='posts'),
+    path('post/<str:slug>/', post_detail, name='post_detail'),
+    path('tags/', tags, name='tags'),
 ]

@@ -63,3 +63,11 @@
 .site-header {
     background-color: var(--alt-color);
 }
+
+.detail-header {
+    background-color: var(--alt-color);
+}
+
+.card-body {
+    font-size: 35px;
+}

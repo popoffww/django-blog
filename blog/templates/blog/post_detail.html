@@ -1,0 +1,58 @@
+{% extends 'post_detail_base.html' %}
+{% load static %}
+{% url 'home' as home_url %}
+{% url 'posts' as posts_url %}
+{% url 'tags' as tags_url %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <header class="detail-header py-2 text-white">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <h1 class="offset-2">{{ post.title }}</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+          <section id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+             <div class="row">
+                <div class="col-md-3">
+                  <a href="{{ posts_url }}
+                  " class="btn btn-light btn-block">
+                   <i class="fas fa-arrow-left"></i> Назад к постам
+                  </a>
+                </div>
+             </div>
+            </div>
+          </section>
+
+           <section>
+                <div class="container">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-md-10">
+                      <div class="card">
+                        <div class="card-body text-left serif">
+                            {{ post.body }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </section>
+
+
+
+
+{% endblock %}
+
+
+
+
+
