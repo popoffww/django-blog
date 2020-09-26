@@ -1,0 +1,71 @@
+{% extends 'tag_detail_base.html' %}
+{% load static %}
+{% url 'home' as home_url %}
+{% url 'posts' as posts_url %}
+{% url 'tags' as tags_url %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <header class="detail-header py-2 text-white">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+          <h1 class="offset-2">
+              Посты с "{{ tag.title|title }}" тэгом
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <section class="py-4 mb-4 bg-light">
+      <div class="container">
+       <div class="row">
+          <div class="col-md-3">
+            <a href="{{ tags_url }}
+            " class="btn btn-light btn-block">
+             <i class="fas fa-arrow-left"></i> Назад к тэгам
+            </a>
+          </div>
+       </div>
+      </div>
+    </section>
+
+       <section>
+          <div class="container">
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-10">
+                <div class="card">
+                   {% for post in tag.posts.all %}
+                  <div class="card-body text-left text-muted serif">
+                      {{ post.body|truncatewords:5 }}
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+
+      <div class="container mt-3">
+           <div class="row d-flex justify-content-center">
+              <div class="col-md-3">
+                  {% for post in tag.posts.all %}
+                <a href="{{ post.get_absolute_url }}"
+                   class="btn btn-light btn-block text-uppercase font-weight-bold">
+                    Читать пост &raquo;
+                </a>
+                  {% endfor %}
+              </div>
+           </div>
+      </div>
+
+{% endblock %}
+
+
+
+

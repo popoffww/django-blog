@@ -1,0 +1,8 @@
+class PostListView(ListView):
+    model = Post
+    queryset = Post.objects.all()
+    template_name = 'blog/posts.html'
+
+class PostDetailView(DetailView):
+    model = Post
+    slug_field = 'slug'
