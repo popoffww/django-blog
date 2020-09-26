@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    {{ block.super }} - Тэги
+    {{ block.super }} - Все тэги
 {% endblock %}
 
 {% block content %}
@@ -10,16 +10,17 @@
         <div class="container">
           <div class="row d-flex justify-content-center">
             <div class="col-md-10">
-              <div class="card">
+              <div class="jumbotron py-4">
                    {% for tag in tags %}
-                <div class="card-body text-left text-muted serif">
+                <div class="d-inline lead serif tag-size px-3">
 
-                    <a href="{{ tag.get_absolute_url }}"
+                   <a href="{{ tag.get_absolute_url }}"
                        class="text-decoration-none text-dark">
-                        {{ tag.title }}
-                    </a>
+                        {{ tag.title }} &#10060;
+                   </a>
 
                 </div>
+
                     {% endfor %}
               </div>
             </div>
