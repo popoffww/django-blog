@@ -4,9 +4,7 @@
 {% url 'posts' as posts_url %}
 {% url 'tags' as tags_url %}
 
-{% block title %}
-    {{ block.super }}
-{% endblock %}
+{% block title %} Посты с "{{ tag.title|title }}" тэгом {% endblock %}
 
 {% block content %}
 
