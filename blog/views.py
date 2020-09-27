@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView
 from django.views.generic import View
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from .models import Post, Tag
 
@@ -13,14 +14,14 @@ class PostListView(ListView):
     model = Post
     queryset = Post.objects.filter(draft=False)
 
+class PostDetailView(DetailView):
+    model = Post
+    slug_field = 'slug'
+
+
 class TagListView(ListView):
     model = Tag
     queryset = Tag.objects.all()
-
-class PostDetail(View):
-    def get(self, request, slug):
-        post = Post.objects.get(slug__iexact=slug)
-        return render(request, 'blog/post_detail.html', {'post': post})
 
 class TagDetail(View):
     def get(self, request, slug):
