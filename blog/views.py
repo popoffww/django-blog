@@ -2,11 +2,11 @@ from django.shortcuts import render
 from .models import Post, Tag
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(draft=False)
     return render(request, 'blog/home.html', {'posts': posts})
 
 def posts(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(draft=False)
     return render(request, 'blog/posts.html', {'posts': posts})
 
 def post_detail(request, slug):
