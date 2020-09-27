@@ -1,23 +1,29 @@
 from django.shortcuts import render
+from django.views.generic.list import ListView
+from django.views.generic import View
+
 from .models import Post, Tag
 
-def home(request):
-    posts = Post.objects.filter(draft=False)
-    return render(request, 'blog/home.html', {'posts': posts})
+class HomeListView(ListView):
+    model = Post
+    queryset = Post.objects.filter(draft=False)
+    template_name = 'blog/home.html'
 
-def posts(request):
-    posts = Post.objects.filter(draft=False)
-    return render(request, 'blog/posts.html', {'posts': posts})
+class PostListView(ListView):
+    model = Post
+    queryset = Post.objects.filter(draft=False)
 
-def post_detail(request, slug):
-    post = Post.objects.get(slug__iexact=slug)
-    return render(request, 'blog/post_detail.html', {'post': post})
+class TagListView(ListView):
+    model = Tag
+    queryset = Tag.objects.all()
 
-def tags(request):
-    tags = Tag.objects.all()
-    return render(request, 'blog/tags.html', {'tags': tags})
+class PostDetail(View):
+    def get(self, request, slug):
+        post = Post.objects.get(slug__iexact=slug)
+        return render(request, 'blog/post_detail.html', {'post': post})
 
-def tag_detail(request, slug):
-    tag = Tag.objects.get(slug__iexact=slug)
-    return render(request, 'blog/tag_detail.html', {'tag': tag})
+class TagDetail(View):
+    def get(self, request, slug):
+        tag = Tag.objects.get(slug__iexact=slug)
+        return render(request, 'blog/tag_detail.html', {'tag': tag})
 
