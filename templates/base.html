@@ -122,28 +122,30 @@
     </div>
   </header>
 
-    <section class="py-4 mx-auto mb-4 bg-light
-                    {% if request.path != home_url %} invisible {% endif %}">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
+     <section class="py-4 mx-auto mb-4 bg-light">
+        <div class="container">
+        <div class="row d-flex justify-content-center">
         <div class="col-md-3">
-          <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
-            <i class="fas fa-plus"></i> Добавить пост
-          </a>
+        <a href="#" class="btn btn-primary btn-block">
+        <i class="fas fa-plus"></i> Добавить пост
+        </a>
         </div>
         <div class="col-md-3">
-          <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
-            <i class="fas fa-plus"></i> Добавить тэг
-          </a>
+        <a href="{% url 'tag_create' %}"
+        class="btn btn-success btn-block">
+        <i class="fas fa-plus"></i> Создать тэг
+        </a>
         </div>
         <div class="col-md-3">
-          <a href="#" class="btn btn-warning btn-block orange text-white" data-toggle="modal" data-target="#addUserModal">
-            <i class="fas fa-plus"></i> Добавить пользователя
-          </a>
+        <a href="#" class="btn btn-warning btn-block orange text-white">
+        <i class="fas fa-plus"></i> Добавить пользователя
+        </a>
         </div>
-      </div>
-    </div>
-  </section>
+        </div>
+        </div>
+    </section>
+
+
 
 {% block content %} {% endblock %}	
 

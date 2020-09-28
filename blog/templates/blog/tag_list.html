@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     {{ block.super }} - Все тэги
@@ -12,7 +13,7 @@
             <div class="col-md-10">
               <div class="jumbotron py-4">
                    {% for tag in tag_list %}
-                <div class="d-inline lead serif tag-size px-3">
+                <div class="d-inline lead serif tag-size px-2">
 
                    <a href="{{ tag.get_absolute_url }}"
                        class="text-decoration-none text-dark">

@@ -6,3 +6,15 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     slug_field = 'slug'
+
+
+class TagCreateView(CreateView):
+    model = Tag
+    form_class = TagForm
+    template_name = 'blog/tag_create.html' / если шаблон не tag_form.html /
+    success_url = reverse_lazy('tags')
+
+class TagCreateView(CreateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy('tags')
