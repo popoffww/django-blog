@@ -3,14 +3,12 @@ from django.core.exceptions import ValidationError
 from .models import *
 
 class TagForm(forms.ModelForm):
-    title = forms.CharField(label='',
+    title = forms.CharField(label='Тэг',
                             widget=forms.TextInput(
-                            attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}
-                            ))
-    slug = forms.CharField(label='',
+                            attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}))
+    slug = forms.CharField(label='Слаг',
                            widget=forms.TextInput(
-                           attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}
-                           ))
+                           attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}))
 
     class Meta(object):
         model = Tag
@@ -20,8 +18,8 @@ class TagForm(forms.ModelForm):
     def clean_slug(self):
         new_slug = self.cleaned_data['slug'].lower()
         if new_slug == 'create':
-            raise ValidationError('Slug не может быть "create"')
+            raise ValidationError('Слаг не может быть "create"')
         if Tag.objects.filter(slug__iexact=new_slug).count():
-            raise ValidationError('Slug должен быть уникальным. Slug "{}" уже существует'.format(new_slug))
+            raise ValidationError('Слаг должен быть уникальным. Слаг "{}" уже существует'.format(new_slug))
         return new_slug
     
