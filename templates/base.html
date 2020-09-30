@@ -93,25 +93,25 @@
 
  <header class="site-header py-2 text-white sans">
     <div class="container">
-      <div class="row">
+      <div class="row d-flex justify-content-center">
         <div class="col-md-6">
 
           {% if request.path == home_url %}
-            <h1>
+            <h1 class="text-center">
               <i class="fas fa-home"></i>
             Dashboard
             </h1>
           {% endif %}
 
           {% if request.path == posts_url %}
-            <h1>
+            <h1 class="text-center">
               <i class="fas fa-th-list"></i>
             Посты
             </h1>
           {% endif %}
 
           {% if request.path == tags_url %}
-            <h1>
+            <h1 class="text-center">
               <i class="fas fa-tags"></i>
             Тэги
             </h1>
