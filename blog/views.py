@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
@@ -10,10 +9,8 @@ from django.views.generic.edit import CreateView, UpdateView
 from .models import Post, Tag
 from .forms import PostForm, TagForm
 
-class HomeListView(ListView):
-    model = Post
-    queryset = Post.objects.filter(draft=False)
-    template_name = 'blog/home.html'
+def home(request):
+    return render(request, 'blog/home.html')
 
 class PostListView(ListView):
     model = Post
