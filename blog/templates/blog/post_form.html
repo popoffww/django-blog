@@ -4,17 +4,17 @@
 {% url 'posts' as posts_url %}
 {% url 'tags' as tags_url %}
 
-{% block title %} Создать тэг {% endblock %}
+{% block title %} Создать пост {% endblock %}
 
 {% block content %}
 
-    <header class="detail-header py-2 text-white">
+  <header class="detail-header py-2 text-white">
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="col-md-8">
           <h1 class="text-center">
-              <i class="fa fa-tag"></i>
-                Создать тэг
+            <i class="fas fa-th-list"></i>
+                Создать пост
           </h1>
         </div>
       </div>
@@ -25,24 +25,24 @@
       <div class="container">
        <div class="row">
           <div class="col-md-3">
-            <a href="{{ tags_url }}"
+            <a href="{{ posts_url }}"
                 class="btn btn-light btn-block">
-             <i class="fas fa-arrow-left"></i> Назад к тэгам
+             <i class="fas fa-arrow-left"></i> Назад к постам
             </a>
           </div>
        </div>
       </div>
     </section>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-4 offset-4">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6">
 
-                    <form method="post">
+                        <form action="" method="post">
 
                             {% csrf_token %}
 
-                            {% for field in form %}
+                         {% for field in form %}
 
                         <div class="form-group">
 
@@ -59,22 +59,18 @@
 
                             {% endfor %}
 
-                        <div class="text-center pt-3">
-                          <button type="submit"
-                                  class="btn text-white"
-                                  style="background: #c57;">
-                              Создать тэг
-                          </button>
-                        </div>
+                            <div class="text-center pt-3 mb-5">
+                              <button type="submit"
+                                      class="btn text-white"
+                                      style="background: #c57;">
+                                  Создать пост
+                              </button>
+                            </div>
 
-                    </form>
+                       </form>
 
+                    </div>
                 </div>
             </div>
-        </div>
 
 {% endblock %}
-
-
-
-

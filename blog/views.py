@@ -8,7 +8,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 
 from .models import Post, Tag
-from .forms import TagForm
+from .forms import PostForm, TagForm
 
 class HomeListView(ListView):
     model = Post
@@ -22,6 +22,12 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     slug_field = 'slug'
+
+class PostCreateView(SuccessMessageMixin, CreateView):
+    model = Post
+    form_class = PostForm
+    success_url = reverse_lazy('posts')
+    success_message = 'Пост успешно создан'
 
 class TagListView(ListView):
     model = Tag

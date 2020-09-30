@@ -1,20 +1,71 @@
-class PostListView(ListView):
-    model = Post
-    queryset = Post.objects.all()
-    template_name = 'blog/posts.html'
+class PostForm(forms.ModelForm):
+    title = forms.CharField(label='Заголовок',
+                            widget=forms.TextInput(
+                            attrs={'class': 'form-control', 'placeholder': 'Введите заголовок'}))
+    slug = forms.CharField(label='Слаг',
+                           widget=forms.TextInput(
+                           attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}))
 
-class PostDetailView(DetailView):
-    model = Post
-    slug_field = 'slug'
+    body = forms.CharField(label='Текст',
+                           widget=forms.Textarea(
+                           attrs={'class': 'form-control', 'placeholder': 'Введите текст'}))
+
+    tag = forms.ModelChoiceField(queryset=Tag.objects.all(), widget=forms.Select(
+                                 attrs={'class': 'form-control'}))
+
+    draft = forms.BooleanField(label='Черновик', required=False)
+
+    class Meta:
+        model = Post
+        fields = ('title', 'slug', 'body', 'tag', 'draft')
 
 
-class TagCreateView(CreateView):
-    model = Tag
-    form_class = TagForm
-    template_name = 'blog/tag_create.html' / если шаблон не tag_form.html /
-    success_url = reverse_lazy('tags')
+class TagForm(forms.ModelForm):
+    title = forms.CharField(label='Тэг',
+                            widget=forms.TextInput(
+                            attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}))
+    slug = forms.CharField(label='Слаг',
+                           widget=forms.TextInput(
+                           attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}))
 
-class TagCreateView(CreateView):
-    model = Tag
-    form_class = TagForm
-    success_url = reverse_lazy('tags')
+    class Meta:
+        model = Tag
+        fields = ('title', 'slug')
+
+
+
+class PostForm(forms.ModelForm):
+    draft = forms.BooleanField(label='Черновик', required=False)
+
+    class Meta:
+        model = Post
+        fields = ['title', 'slug', 'body', 'tags', 'draft']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}),
+            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Текст поста'}),
+            'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
+        }
+
+    def clean_slug(self):
+        new_slug = self.cleaned_data['slug'].lower()
+        if new_slug == 'create':
+            raise ValidationError('Slug не может быть "create"')
+        return new_slug
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ['title', 'slug']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}),
+        }
+
+    def clean_slug(self):
+        new_slug = self.cleaned_data['slug'].lower()
+        if new_slug == 'create':
+            raise ValidationError('Slug не может быть "create"')
+        if Tag.objects.filter(slug__iexact=new_slug).count():
+            raise ValidationError('Slug должен быть уникальным. Slug "{}" уже существует'.format(new_slug))
+        return new_slug
