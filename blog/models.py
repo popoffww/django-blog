@@ -20,12 +20,14 @@ class Post(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = gen_slug(self.title)
+        self.slug = gen_slug(self.title)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('post_update', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Статья блога'

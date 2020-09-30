@@ -29,6 +29,13 @@ class PostCreateView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('posts')
     success_message = 'Пост успешно создан'
 
+class PostUpdateView(SuccessMessageMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'blog/post_update.html'
+    success_url = reverse_lazy('posts')
+    success_message = 'Пост успешно изменен'
+
 class TagListView(ListView):
     model = Tag
     queryset = Tag.objects.all()
