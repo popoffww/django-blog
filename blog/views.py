@@ -5,7 +5,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .models import Post, Tag
 from .forms import PostForm, TagForm
@@ -42,6 +42,13 @@ class TagCreateView(SuccessMessageMixin, CreateView):
     form_class = TagForm
     success_url = reverse_lazy('tags')
     success_message = 'Тэг успешно создан'
+
+class TagUpdateView(SuccessMessageMixin, UpdateView):
+    model = Tag
+    form_class = TagForm
+    template_name = 'blog/tag_update.html'
+    success_url = reverse_lazy('tags')
+    success_message = 'Тэг успешно изменен'
 
 
 

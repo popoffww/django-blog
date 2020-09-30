@@ -30,6 +30,12 @@
              <i class="fas fa-arrow-left"></i> Назад к тэгам
             </a>
           </div>
+           <div class="col-md-3 offset-6">
+            <a href="{{ tag.get_update_url }}
+            " class="btn btn-light btn-block">
+             <i class="fas fa-pencil-alt"></i> Изменить тэг
+            </a>
+          </div>
        </div>
       </div>
     </section>
@@ -43,25 +49,20 @@
                   <div class="card-body text-left text-muted serif">
                       {{ post.body|truncatewords:5 }}
                   </div>
+                    <div class="row d-flex justify-content-center">
+                          <div class="col-md-3 pb-3">
+                            <a href="{{ post.get_absolute_url }}"
+                               class="btn btn-light btn-block text-uppercase font-weight-bold">
+                                Читать пост &raquo;
+                            </a>
+                          </div>
+                   </div>
                   {% endfor %}
                 </div>
               </div>
             </div>
           </div>
       </section>
-
-      <div class="container mt-3">
-           <div class="row d-flex justify-content-center">
-              <div class="col-md-3">
-                  {% for post in tag.posts.all %}
-                <a href="{{ post.get_absolute_url }}"
-                   class="btn btn-light btn-block text-uppercase font-weight-bold">
-                    Читать пост &raquo;
-                </a>
-                  {% endfor %}
-              </div>
-           </div>
-      </div>
 
 {% endblock %}
 
