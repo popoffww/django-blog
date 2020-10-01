@@ -1,0 +1,58 @@
+{% extends 'detail_base.html' %}
+{% load static %}
+{% url 'home' as home_url %}
+{% url 'posts' as posts_url %}
+{% url 'tags' as tags_url %}
+
+{% block title %} Удалить "{{ post.title }}" пост {% endblock %}
+
+{% block content %}
+
+  <header class="detail-header py-2 text-white">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-auto">
+          <h1 class="text-center">
+            <i class="fas fa-trash"></i>
+                Действительно удалить "{{ post.title }}" пост?
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <section class="py-4 mb-4 bg-light">
+      <div class="container">
+       <div class="row">
+          <div class="col-md-3">
+            <a href="{{ posts_url }}"
+                class="btn btn-light btn-block">
+             <i class="fas fa-arrow-left"></i> Назад к постам
+            </a>
+          </div>
+       </div>
+      </div>
+    </section>
+
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6">
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                            <div class="text-center pt-3 mb-5">
+                              <button type="submit"
+                                      class="btn btn-lg text-white"
+                                      style="background: #c57;">
+                                  Да, удалить
+                              </button>
+                            </div>
+
+                       </form>
+
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

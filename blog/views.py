@@ -34,6 +34,14 @@ class PostUpdateView(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('posts')
     success_message = 'Пост успешно изменен'
 
+class PostDeleteView(DeleteView):
+    model = Post
+    success_url = reverse_lazy('posts')
+
+    # def get(self, request, *args, **kwargs):
+    #     messages.success(request, 'Тэг успешно удален')
+    #     return self.post(request, *args, **kwargs)
+
 class TagListView(ListView):
     model = Tag
     queryset = Tag.objects.all()

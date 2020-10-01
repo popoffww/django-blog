@@ -29,6 +29,9 @@ class Post(models.Model):
     def get_update_url(self):
         return reverse('post_update', kwargs={'slug': self.slug})
 
+    def get_remove_url(self):
+        return reverse('post_remove', kwargs={'slug': self.slug})
+
     class Meta:
         verbose_name = 'Статья блога'
         verbose_name_plural = 'Статьи блога'
