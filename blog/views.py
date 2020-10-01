@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -21,25 +19,22 @@ class PostDetailView(DetailView):
     model = Post
     slug_field = 'slug'
 
-class PostCreateView(SuccessMessageMixin, CreateView):
+class PostCreateView(CreateView):
     model = Post
     form_class = PostForm
     success_url = reverse_lazy('posts')
-    success_message = 'Пост успешно создан'
 
-class PostUpdateView(SuccessMessageMixin, UpdateView):
+class PostUpdateView(UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'blog/post_update.html'
     success_url = reverse_lazy('posts')
-    success_message = 'Пост успешно изменен'
 
 class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy('posts')
 
     # def get(self, request, *args, **kwargs):
-    #     messages.success(request, 'Тэг успешно удален')
     #     return self.post(request, *args, **kwargs)
 
 class TagListView(ListView):
@@ -50,25 +45,22 @@ class TagDetailView(DetailView):
     model = Tag
     slug_field = 'slug'
 
-class TagCreateView(SuccessMessageMixin, CreateView):
+class TagCreateView(CreateView):
     model = Tag
     form_class = TagForm
     success_url = reverse_lazy('tags')
-    success_message = 'Тэг успешно создан'
 
-class TagUpdateView(SuccessMessageMixin, UpdateView):
+class TagUpdateView(UpdateView):
     model = Tag
     form_class = TagForm
     template_name = 'blog/tag_update.html'
     success_url = reverse_lazy('tags')
-    success_message = 'Тэг успешно изменен'
 
 class TagDeleteView(DeleteView):
     model = Tag
     success_url = reverse_lazy('tags')
 
     # def get(self, request, *args, **kwargs):
-    #     messages.success(request, 'Тэг успешно удален')
     #     return self.post(request, *args, **kwargs)
 
 
