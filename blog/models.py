@@ -46,6 +46,9 @@ class Tag(models.Model):
     def get_update_url(self):
         return reverse('tag_update', kwargs={'slug': self.slug})
 
+    def get_remove_url(self):
+        return reverse('tag_remove', kwargs={'slug': self.slug})
+
 
         
 

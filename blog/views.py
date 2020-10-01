@@ -2,15 +2,16 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Post, Tag
 from .forms import PostForm, TagForm
 
-def home(request):
-    return render(request, 'blog/home.html')
+class HomePageView(TemplateView):
+    template_name = 'blog/home.html'
 
 class PostListView(ListView):
     model = Post
@@ -53,6 +54,14 @@ class TagUpdateView(SuccessMessageMixin, UpdateView):
     template_name = 'blog/tag_update.html'
     success_url = reverse_lazy('tags')
     success_message = 'Тэг успешно изменен'
+
+class TagDeleteView(DeleteView):
+    model = Tag
+    success_url = reverse_lazy('tags')
+
+    # def get(self, request, *args, **kwargs):
+    #     messages.success(request, 'Тэг успешно удален')
+    #     return self.post(request, *args, **kwargs)
 
 
 

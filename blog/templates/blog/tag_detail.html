@@ -25,15 +25,21 @@
       <div class="container">
        <div class="row">
           <div class="col-md-3">
-            <a href="{{ tags_url }}
-            " class="btn btn-light btn-block">
+            <a href="{{ tags_url }}"
+                class="btn btn-light btn-block">
              <i class="fas fa-arrow-left"></i> Назад к тэгам
             </a>
           </div>
-           <div class="col-md-3 offset-6">
-            <a href="{{ tag.get_update_url }}
-            " class="btn btn-light btn-block">
+           <div class="col-md-2 offset-2 ">
+            <a href="{{ tag.get_update_url }}"
+                class="btn btn-light btn-block">
              <i class="fas fa-pencil-alt"></i> Изменить тэг
+            </a>
+          </div>
+           <div class="col-md-2 offset-2">
+            <a href="{{ tag.get_remove_url }}"
+                class="btn btn-light btn-block">
+             <i class="fas fa-trash"></i> Удалить тэг
             </a>
           </div>
        </div>
