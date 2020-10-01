@@ -8,67 +8,67 @@
 
 {% block content %}
 
-  <header class="detail-header py-2 text-white">
+<header class="detail-header py-2 text-white">
     <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-auto">
-          <h1 class="text-center">
-              <i class="fa fa-tag"></i>
-                Посты с "{{ tag.title|title }}" тэгом
-          </h1>
+        <div class="row d-flex justify-content-center">
+            <div class="col-auto">
+                <h1 class="text-center">
+                    <i class="fa fa-tag"></i>
+                    Посты с "{{ tag.title|title }}" тэгом
+                </h1>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
-    <section class="py-4 mb-4 bg-light">
-      <div class="container">
-       <div class="row">
-          <div class="col-md-3">
-            <a href="{{ tags_url }}"
-                class="btn btn-light btn-block">
-             <i class="fas fa-arrow-left"></i> Назад к тэгам
-            </a>
-          </div>
-           <div class="col-md-2 offset-2 ">
-            <a href="{{ tag.get_update_url }}"
-                class="btn btn-light btn-block">
-             <i class="fas fa-pencil-alt"></i> Изменить тэг
-            </a>
-          </div>
-           <div class="col-md-2 offset-2">
-            <a href="{{ tag.get_remove_url }}"
-                class="btn btn-light btn-block">
-             <i class="fas fa-trash"></i> Удалить тэг
-            </a>
-          </div>
-       </div>
-      </div>
-    </section>
+<section class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="{{ tags_url }}"
+                   class="btn btn-light btn-block">
+                    <i class="fas fa-arrow-left"></i> Назад к тэгам
+                </a>
+            </div>
+            <div class="col-md-2 offset-2 ">
+                <a href="{{ tag.get_update_url }}"
+                   class="btn btn-light btn-block">
+                    <i class="fas fa-pencil-alt"></i> Изменить тэг
+                </a>
+            </div>
+            <div class="col-md-2 offset-2">
+                <a href="{{ tag.get_remove_url }}"
+                   class="btn btn-light btn-block">
+                    <i class="fas fa-trash"></i> Удалить тэг
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
-       <section>
-          <div class="container">
-            <div class="row d-flex justify-content-center">
-              <div class="col-md-10">
+<section>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10">
                 <div class="card">
-                   {% for post in tag.posts.all %}
-                  <div class="card-body text-left text-muted serif">
-                      {{ post.body|truncatewords:5 }}
-                  </div>
+                    {% for post in tag.posts.all %}
+                    <div class="card-body text-left text-muted serif">
+                        {{ post.body|truncatewords:5 }}
+                    </div>
                     <div class="row d-flex justify-content-center">
-                          <div class="col-md-3 pb-3">
+                        <div class="col-md-3 pb-3">
                             <a href="{{ post.get_absolute_url }}"
                                class="btn btn-light btn-block text-uppercase font-weight-bold">
                                 Читать пост &raquo;
                             </a>
-                          </div>
-                   </div>
-                  {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-              </div>
             </div>
-          </div>
-      </section>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
 

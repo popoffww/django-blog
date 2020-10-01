@@ -2,32 +2,32 @@
 {% load static %}
 
 {% block title %}
-    {{ block.super }} - Все тэги
+{{ block.super }} - Все тэги
 {% endblock %}
 
 {% block content %}
 
-     <section>
-        <div class="container">
-          <div class="row d-flex justify-content-center">
+<section>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
             <div class="col-md-10">
-              <div class="jumbotron py-4">
-                   {% for tag in tag_list %}
-                <div class="d-inline lead serif tag-size px-2">
+                <div class="jumbotron py-4">
+                    {% for tag in tag_list %}
+                    <div class="d-inline lead serif tag-size px-2">
 
-                   <a href="{{ tag.get_absolute_url }}"
-                       class="text-decoration-none text-dark">
-                           {{ tag.title }}
+                        <a href="{{ tag.get_absolute_url }}"
+                           class="text-decoration-none text-dark">
+                            {{ tag.title }}
                             <!--&#10060;-->
-                   </a>
+                        </a>
 
-                </div>
+                    </div>
 
                     {% endfor %}
-              </div>
+                </div>
             </div>
-          </div>
         </div>
-    </section>
+    </div>
+</section>
 
 {% endblock %}

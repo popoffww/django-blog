@@ -5,61 +5,61 @@
 {% url 'tags' as tags_url %}
 
 {% block title %}
-    {{ block.super }} - Главная
+{{ block.super }} - Главная
 {% endblock %}
 
 {% block content %}
 
-        <div class="container">
-            <div class="row">
+<div class="container">
+    <div class="row">
 
-            <div class="col-4">
-              <div class="card text-center bg-primary text-white mb-3">
+        <div class="col-4">
+            <div class="card text-center bg-primary text-white mb-3">
                 <div class="card-body">
-                  <h3>Посты</h3>
-                  <h4 class="display-4">
-                    <i class="fas fa-th-list"></i>
-                  </h4>
-                  <a href="{{ posts_url }}"
-                     class="btn btn-outline-light btn-sm">
-                      Смотреть посты
-                  </a>
+                    <h3>Посты</h3>
+                    <h4 class="display-4">
+                        <i class="fas fa-th-list"></i>
+                    </h4>
+                    <a href="{{ posts_url }}"
+                       class="btn btn-outline-light btn-sm">
+                        Смотреть посты
+                    </a>
                 </div>
-              </div>
             </div>
-
-            <div class="col-4">
-              <div class="card text-center bg-success text-white mb-3">
-                <div class="card-body">
-                  <h3>Тэги</h3>
-                  <h4 class="display-4">
-                    <i class="fas fa-tags"></i>
-                  </h4>
-                  <a href="{{ tags_url }}"
-                     class="btn btn-outline-light btn-sm">
-                      Смотреть тэги
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-4">
-              <div class="card card-user text-center text-white mb-3 orange">
-                <div class="card-body">
-                  <h3>Админы</h3>
-                  <h4 class="display-4">
-                    <i class="fas fa-users"></i>
-                  </h4>
-                  <a href=""
-                     class="btn btn-outline-light btn-sm">
-                      Пользователи
-                  </a>
-                </div>
-              </div>
-            </div>
-
         </div>
+
+        <div class="col-4">
+            <div class="card text-center bg-success text-white mb-3">
+                <div class="card-body">
+                    <h3>Тэги</h3>
+                    <h4 class="display-4">
+                        <i class="fas fa-tags"></i>
+                    </h4>
+                    <a href="{{ tags_url }}"
+                       class="btn btn-outline-light btn-sm">
+                        Смотреть тэги
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card card-user text-center text-white mb-3 orange">
+                <div class="card-body">
+                    <h3>Админы</h3>
+                    <h4 class="display-4">
+                        <i class="fas fa-users"></i>
+                    </h4>
+                    <a href=""
+                       class="btn btn-outline-light btn-sm">
+                        Пользователи
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
 
 {% endblock %}
 

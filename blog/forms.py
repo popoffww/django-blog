@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import *
 
+
 class PostForm(forms.ModelForm):
     draft = forms.BooleanField(label='Черновик', required=False)
 
@@ -21,6 +22,7 @@ class PostForm(forms.ModelForm):
             raise ValidationError('Слаг не может быть "create"')
         return new_slug
 
+
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
@@ -37,6 +39,3 @@ class TagForm(forms.ModelForm):
         if Tag.objects.filter(slug__iexact=new_slug).count():
             raise ValidationError('Слаг должен быть уникальным. Слаг "{}" уже существует'.format(new_slug))
         return new_slug
-
-
-

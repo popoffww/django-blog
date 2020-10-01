@@ -5,8 +5,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
           crossorigin="anonymous">
@@ -16,140 +16,146 @@
           crossorigin="anonymous">
     <link rel="stylesheet"
           href="{% static 'css/style.css' %}">
-<title>{% block title %} Блог {% endblock %}</title>
+    <title>{% block title %} Блог {% endblock %}</title>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 serif">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 serif">
     <div class="container">
 
-      <a href="{{ home_url }}
+        <a href="{{ home_url }}
       " class="navbar-brand">
-        <i class="fab fa-blogger-b px-2"></i>
-             Блог
-    </a>
-
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item px-2" >
-            <a href="{{ home_url }}" class="nav-link {% if request.path == home_url %} active {% endif %}">
-              Dashboard
-          </a>
-        </li>
-          <li class="nav-item px-2 {% if request.path == posts_url %} active {% endif %}" >
-            <a href="{{ posts_url }}
-            " class="nav-link">
-              Посты
-          </a>
-        </li>
-          <li class="nav-item px-2 {% if request.path == tags_url %} active {% endif %}" >
-            <a href="{{ tags_url }}
-            " class="nav-link">
-              Тэги
-          </a>
-        </li>
-        <li class="nav-item px-2" >
-          <a href="/admin"
-             class="nav-link">
-            Админ
+            <i class="fab fa-blogger-b px-2"></i>
+            Блог
         </a>
-        </li>
-        </ul>
 
-        <!-- Dropdown -->
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
 
-          <li class="nav-item dropdown mr-3">
-            <a href="" class="nav-link dropdown-toggle active" data-toggle="dropdown">
-                <i class="fa fa-cog"></i>
-                Авторизация
-            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item px-2">
+                    <a href="{{ home_url }}" class="nav-link {% if request.path == home_url %} active {% endif %}">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item px-2 {% if request.path == posts_url %} active {% endif %}">
+                    <a href="{{ posts_url }}
+            " class="nav-link">
+                        Посты
+                    </a>
+                </li>
+                <li class="nav-item px-2 {% if request.path == tags_url %} active {% endif %}">
+                    <a href="{{ tags_url }}
+            " class="nav-link">
+                        Тэги
+                    </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/admin"
+                       class="nav-link">
+                        Админ
+                    </a>
+                </li>
+            </ul>
 
-            <div class="dropdown-menu">
-              <a href="" class="dropdown-item">
-                <i class="fas fa-sign-in-alt px-1"></i>
-              Войти
-            </a>
+            <!-- Dropdown -->
 
-              <a href="" class="dropdown-item">
-                <i class="fas fa-sign-out-alt px-1"></i>
-                Выйти
-            </a>
-            </div>
+            <ul class="navbar-nav ml-auto">
 
-          </li>
+                <li class="nav-item dropdown mr-3">
+                    <a href="" class="nav-link dropdown-toggle active" data-toggle="dropdown">
+                        <i class="fa fa-cog"></i>
+                        Авторизация
+                    </a>
 
-        </ul>
+                    <div class="dropdown-menu">
+                        <a href="" class="dropdown-item">
+                            <i class="fas fa-sign-in-alt px-1"></i>
+                            Войти
+                        </a>
 
-      </div>  <!-- //collapse navbar-collapse -->
+                        <a href="" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt px-1"></i>
+                            Выйти
+                        </a>
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>  <!-- //collapse navbar-collapse -->
     </div> <!--  /container -->
-  </nav>
+</nav>
 
- <header class="site-header py-2 text-white sans">
+<header class="site-header py-2 text-white sans">
     <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
-
-          {% if request.path == home_url %}
-            <h1 class="text-center">
-              <i class="fas fa-home"></i>
-            Dashboard
-            </h1>
-          {% endif %}
-
-          {% if request.path == posts_url %}
-            <h1 class="text-center">
-              <i class="fas fa-th-list"></i>
-            Посты
-            </h1>
-          {% endif %}
-
-          {% if request.path == tags_url %}
-            <h1 class="text-center">
-              <i class="fas fa-tags"></i>
-            Тэги
-            </h1>
-          {% endif %}
-
-        </div>
-      </div>
-    </div>
-  </header>
-
-     <section class="py-4 mx-auto mb-4 bg-light">
-        <div class="container">
         <div class="row d-flex justify-content-center">
-        <div class="col-md-3">
-        <a href="{% url 'post_create' %}" class="btn btn-primary btn-block">
-        <i class="fas fa-plus"></i> Создать пост
-        </a>
-        </div>
-        <div class="col-md-3">
-        <a href="{% url 'tag_create' %}"
-        class="btn btn-success btn-block">
-        <i class="fas fa-plus"></i> Создать тэг
-        </a>
-        </div>
-        <div class="col-md-3">
-        <a href="#" class="btn btn-warning btn-block orange text-white">
-        <i class="fas fa-plus"></i> Добавить пользователя
-        </a>
-        </div>
-        </div>
-        </div>
-    </section>
+            <div class="col-md-6">
 
-{% block content %} {% endblock %}	
+                {% if request.path == home_url %}
+                <h1 class="text-center">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </h1>
+                {% endif %}
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                {% if request.path == posts_url %}
+                <h1 class="text-center">
+                    <i class="fas fa-th-list"></i>
+                    Посты
+                </h1>
+                {% endif %}
+
+                {% if request.path == tags_url %}
+                <h1 class="text-center">
+                    <i class="fas fa-tags"></i>
+                    Тэги
+                </h1>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="py-4 mx-auto mb-4 bg-light">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-3">
+                <a href="{% url 'post_create' %}" class="btn btn-primary btn-block">
+                    <i class="fas fa-plus"></i> Создать пост
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="{% url 'tag_create' %}"
+                   class="btn btn-success btn-block">
+                    <i class="fas fa-plus"></i> Создать тэг
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-warning btn-block orange text-white">
+                    <i class="fas fa-plus"></i> Добавить пользователя
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block content %} {% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

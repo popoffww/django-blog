@@ -8,69 +8,69 @@
 
 {% block content %}
 
-  <header class="detail-header py-2 text-white">
+<header class="detail-header py-2 text-white">
     <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-auto">
-          <h1 class="text-center">
-            <i class="fas fa-pencil-alt"></i>
-                Изменить "{{ post.title }}" пост
-          </h1>
-        </div>
-      </div>
-    </div>
-  </header>
-
-    <section class="py-4 mb-4 bg-light">
-      <div class="container">
-       <div class="row">
-          <div class="col-md-3">
-            <a href="{{ posts_url }}"
-                class="btn btn-light btn-block">
-             <i class="fas fa-arrow-left"></i> Назад к постам
-            </a>
-          </div>
-       </div>
-      </div>
-    </section>
-
-            <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-6">
-
-                        <form action="" method="post">
-
-                            {% csrf_token %}
-
-                         {% for field in form %}
-
-                        <div class="form-group">
-
-                            {% if field.errors %}
-                                <div class="alert alert-danger">
-                                  {{ field.errors }}
-                                </div>
-                            {% endif %}
-
-                                {{ field.label }}
-                                {{ field }}
-
-                        </div>
-
-                            {% endfor %}
-
-                            <div class="text-center pt-3 mb-5">
-                              <button type="submit"
-                                      class="btn text-white"
-                                      style="background: #c57;">
-                                  Изменить пост
-                              </button>
-                            </div>
-
-                       </form>
-
-                    </div>
-                </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-auto">
+                <h1 class="text-center">
+                    <i class="fas fa-pencil-alt"></i>
+                    Изменить "{{ post.title }}" пост
+                </h1>
             </div>
+        </div>
+    </div>
+</header>
+
+<section class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="{{ posts_url }}"
+                   class="btn btn-light btn-block">
+                    <i class="fas fa-arrow-left"></i> Назад к постам
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+
+            <form action="" method="post">
+
+                {% csrf_token %}
+
+                {% for field in form %}
+
+                <div class="form-group">
+
+                    {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                    {% endif %}
+
+                    {{ field.label }}
+                    {{ field }}
+
+                </div>
+
+                {% endfor %}
+
+                <div class="text-center pt-3 mb-5">
+                    <button type="submit"
+                            class="btn text-white"
+                            style="background: #c57;">
+                        Изменить пост
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 {% endblock %}
