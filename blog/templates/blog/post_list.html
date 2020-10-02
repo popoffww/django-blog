@@ -116,34 +116,11 @@
                     </ul>
                 </nav>
 
-                {% if request.user.is_authenticated and request.user.is_staff %}
-                <!--Пагинация Django-->
-                <div class="pagination justify-content-center">
-                    <span class="step-links">
-                        {% if page_obj.has_previous %}
-                            <a href="?page=1">&laquo; Начало</a>
-                            <a href="?page={{ page_obj.previous_page_number }}">Пред</a>
-                        {% endif %}
-
-                        <span class="current">
-                            Стр. {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
-                        </span>
-
-                        {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.next_page_number }}">
-                                След
-                            </a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}">
-                                Финал &raquo;
-                            </a>
-                        {% endif %}
-                    </span>
-                </div>
-                {% endif %}
-
             </div>
         </div>
     </div>
 </section>
 
 {% endblock %}
+
+

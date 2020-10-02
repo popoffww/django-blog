@@ -1,151 +1,177 @@
 class PostForm(forms.ModelForm):
     title = forms.CharField(label='Заголовок',
-                            widget=forms.TextInput(
-                            attrs={'class': 'form-control', 'placeholder': 'Введите заголовок'}))
+    widget=forms.TextInput(
+    attrs={'class': 'form-control', 'placeholder': 'Введите заголовок'}))
     slug = forms.CharField(label='Слаг',
-                           widget=forms.TextInput(
-                           attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}))
+    widget=forms.TextInput(
+    attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}))
 
     body = forms.CharField(label='Текст',
-                           widget=forms.Textarea(
-                           attrs={'class': 'form-control', 'placeholder': 'Введите текст'}))
+    widget=forms.Textarea(
+    attrs={'class': 'form-control', 'placeholder': 'Введите текст'}))
 
     tag = forms.ModelChoiceField(queryset=Tag.objects.all(), widget=forms.Select(
-                                 attrs={'class': 'form-control'}))
+    attrs={'class': 'form-control'}))
 
     draft = forms.BooleanField(label='Черновик', required=False)
 
     class Meta:
-        model = Post
-        fields = ('title', 'slug', 'body', 'tag', 'draft')
+    model = Post
+    fields = ('title', 'slug', 'body', 'tag', 'draft')
 
 
 class TagForm(forms.ModelForm):
     title = forms.CharField(label='Тэг',
-                            widget=forms.TextInput(
-                            attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}))
+    widget=forms.TextInput(
+    attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}))
     slug = forms.CharField(label='Слаг',
-                           widget=forms.TextInput(
-                           attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}))
+    widget=forms.TextInput(
+    attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}))
 
     class Meta:
-        model = Tag
-        fields = ('title', 'slug')
-
+    model = Tag
+    fields = ('title', 'slug')
 
 
 class PostForm(forms.ModelForm):
     draft = forms.BooleanField(label='Черновик', required=False)
 
     class Meta:
-        model = Post
-        fields = ['title', 'slug', 'body', 'tags', 'draft']
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}),
-            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Текст поста'}),
-            'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
-        }
+    model = Post
+    fields = ['title', 'slug', 'body', 'tags', 'draft']
+    widgets = {
+    'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}),
+    'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}),
+    'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Текст поста'}),
+    'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
+    }
 
     def clean_slug(self):
-        new_slug = self.cleaned_data['slug'].lower()
-        if new_slug == 'create':
-            raise ValidationError('Slug не может быть "create"')
-        return new_slug
+    new_slug = self.cleaned_data['slug'].lower()
+    if new_slug == 'create':
+    raise ValidationError('Slug не может быть "create"')
+    return new_slug
 
 class TagForm(forms.ModelForm):
     class Meta:
-        model = Tag
-        fields = ['title', 'slug']
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}),
-        }
+    model = Tag
+    fields = ['title', 'slug']
+    widgets = {
+    'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите тэг'}),
+    'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите слаг'}),
+    }
 
     def clean_slug(self):
-        new_slug = self.cleaned_data['slug'].lower()
-        if new_slug == 'create':
-            raise ValidationError('Slug не может быть "create"')
-        if Tag.objects.filter(slug__iexact=new_slug).count():
-            raise ValidationError('Slug должен быть уникальным. Slug "{}" уже существует'.format(new_slug))
-        return new_slug
+    new_slug = self.cleaned_data['slug'].lower()
+    if new_slug == 'create':
+    raise ValidationError('Slug не может быть "create"')
+    if Tag.objects.filter(slug__iexact=new_slug).count():
+    raise ValidationError('Slug должен быть уникальным. Slug "{}" уже существует'.format(new_slug))
+    return new_slug
 
 
 <!--  Success_message-->
-  <div class="container my-4">
-		<div class="row">
-			<div class="col-md-8 mx-auto">
-			  {% if messages %}
-          {% for message in messages %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            {% if messages %}
+            {% for message in messages %}
             {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-              <div class="alert alert-danger messages">
-                <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            <div class="alert alert-danger messages">
+                <span {% if message.tags %} class="{{ message.tags }}" {% endif %}>
                 Внимание!  {{ message }}<br/>
                 </span>
-              </div>
+            </div>
             {%else %}
-              <div class="alert alert-success messages">
-                <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            <div class="alert alert-success messages">
+                <span {% if message.tags %} class="{{ message.tags }}" {% endif %}>
                 {{ message }}<br/>
                 </span>
-              </div>
+            </div>
             {% endif %}
-          {% endfor %}
-			  {% endif %}
-			</div>
-		</div>
-     </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 
 <section>
     <div class="container">
-    <div class="row d-flex justify-content-center">
-    <div class="col-md-9">
-    <div class="card">
-    <div class="card-header">
-    <h4>Все посты</h4>
-    </div>
-    <table class="table table-striped">
-    <thead class="thead-dark">
-    <tr>
-    <th>№</th>
-    <th class="pl-4">Заголовок</th>
-    <th>Тэги</th>
-    <th class="pl-5">Дата</th>
-    <th class="pl-4">Действие</th>
-    </tr>
-    </thead>
-    <tbody>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Все посты</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>№</th>
+                            <th class="pl-4">Заголовок</th>
+                            <th>Тэги</th>
+                            <th class="pl-5">Дата</th>
+                            <th class="pl-4">Действие</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-        {% for post in post_list %}
+                        {% for post in post_list %}
 
-        <tr>
+                        <tr>
 
-        <td>{{ forloop.counter }}</td>
-        <td>{{ post.title }}</td>
-        <td>
-            {% for tag in post.tags.all %}
-                <a href="{{ tag.get_absolute_url }}"
-                   class="text-decoration-none text-dark">
-                    {{ tag.title }}
-                </a>
-            {% endfor %}
-        </td>
-        <td>{{ post.date_pub }}</td>
-        <td>
-        <a href="{{ post.get_absolute_url }}"
-           class="btn btn-secondary">
-            <i class="fas fa-angle-double-right"></i> Читать пост
-        </a>
-        </td>
-        </tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ post.title }}</td>
+                            <td>
+                                {% for tag in post.tags.all %}
+                                <a href="{{ tag.get_absolute_url }}"
+                                   class="text-decoration-none text-dark">
+                                    {{ tag.title }}
+                                </a>
+                                {% endfor %}
+                            </td>
+                            <td>{{ post.date_pub }}</td>
+                            <td>
+                                <a href="{{ post.get_absolute_url }}"
+                                   class="btn btn-secondary">
+                                    <i class="fas fa-angle-double-right"></i> Читать пост
+                                </a>
+                            </td>
+                        </tr>
 
-        {% endfor %}
+                        {% endfor %}
 
-    </tbody>
-    </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </section>
+</section>
+
+
+
+{% if request.user.is_authenticated and request.user.is_staff %}
+<!--Пагинация Django-->
+<div class="pagination justify-content-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Начало</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Пред</a>
+        {% endif %}
+
+        <span class="current">
+            Стр. {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">
+                След
+            </a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">
+                Финал &raquo;
+            </a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
