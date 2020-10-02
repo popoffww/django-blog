@@ -88,8 +88,8 @@
 
 <header class="site-header py-2 text-white sans">
     <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-6">
+        <div class="row">
+            <div class="col">
 
                 {% if request.path == home_url %}
                 <h1 class="text-center">
@@ -99,10 +99,25 @@
                 {% endif %}
 
                 {% if request.path == posts_url %}
-                <h1 class="text-center">
-                    <i class="fas fa-th-list"></i>
-                    Посты
-                </h1>
+                <div class="d-flex">
+                    <div class="col-md-3 offset-5">
+                        <h1>
+                            <i class="fas fa-th-list"></i>
+                            Посты
+                        </h1>
+                    </div>
+                    <div class="col-md-5 offset-1 py-2">
+                        <div class="input-group">
+                            <input name="search"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Искать пост">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-light">Поиск</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% endif %}
 
                 {% if request.path == tags_url %}
