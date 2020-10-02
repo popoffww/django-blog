@@ -30,6 +30,7 @@
                     <i class="fas fa-arrow-left"></i> Назад к тэгам
                 </a>
             </div>
+            {% if request.user.is_authenticated and request.user.is_staff %}
             <div class="col-md-2 offset-2 ">
                 <a href="{{ tag.get_update_url }}"
                    class="btn btn-light btn-block">
@@ -42,6 +43,7 @@
                     <i class="fas fa-trash"></i> Удалить тэг
                 </a>
             </div>
+            {% endif %}
         </div>
     </div>
 </section>
