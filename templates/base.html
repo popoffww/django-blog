@@ -53,12 +53,14 @@
                         Тэги
                     </a>
                 </li>
+                {% if request.user.is_authenticated and request.user.is_staff %}
                 <li class="nav-item px-2">
                     <a href="/admin"
                        class="nav-link">
                         Админ
                     </a>
                 </li>
+                {% endif %}
             </ul>
 
             <!-- Авторизация -->

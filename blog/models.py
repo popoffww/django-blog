@@ -37,6 +37,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Статья блога'
         verbose_name_plural = 'Статьи блога'
+        ordering = ['-date_pub']
 
 
 class Tag(models.Model):
@@ -54,3 +55,6 @@ class Tag(models.Model):
 
     def get_remove_url(self):
         return reverse('tag_remove', kwargs={'slug': self.slug})
+
+    class Meta:
+        ordering = ['title']

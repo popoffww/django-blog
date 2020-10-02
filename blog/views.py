@@ -17,6 +17,8 @@ class HomePageView(TemplateView):
 class PostListView(ListView):
     model = Post
     queryset = Post.objects.filter(draft=False)
+    paginate_by = 2
+    model = Post
 
 
 class PostDetailView(DetailView):
