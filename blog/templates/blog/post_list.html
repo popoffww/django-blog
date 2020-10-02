@@ -64,15 +64,19 @@
 
                 <!--Пагинация Bootstrap-->
                 <nav aria-label="...">
-                    <ul class="pagination pagination-lg justify-content-center">
+                    <ul class="pagination justify-content-center">
 
                         {% if page_obj.has_previous %}
                         <li class="page-item form-inline">
-                            <a href="?page=1" class="pr-2">Старт</a>
+                            <a href="?page=1" class="pr-3">
+                                <i class="fa fa-fast-backward"></i>
+                            </a>
                             <a class="page-link"
                                href="?page={{ page_obj.previous_page_number }}"
                                aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
+                                <span aria-hidden="true">
+                                  <i class="fa fa-step-backward"></i>
+                                </span>
                                 <span class="sr-only">Previous</span>
                             </a>
                         </li>
@@ -105,11 +109,15 @@
                             <a class="page-link"
                                href="?page={{ page_obj.next_page_number }}"
                                aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
+                                <span aria-hidden="true">
+                                  <i class="fa fa-step-forward"></i>
+                                </span>
                                 <span class="sr-only">Next</span>
                             </a>
                             <a href="?page={{ page_obj.paginator.num_pages }}
-                             " class="pl-2">Финал</a>
+                             " class="pl-3">
+                                <i class="fa fa-fast-forward"></i>
+                            </a>
                         </li>
                         {% endif %}
 
