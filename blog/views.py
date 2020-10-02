@@ -22,7 +22,7 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     slug_field = 'slug'
-    raise_exception = True
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -40,6 +40,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('posts')
+    raise_exception = True
 
     # def get(self, request, *args, **kwargs):
     #     return self.post(request, *args, **kwargs)
@@ -53,7 +54,7 @@ class TagListView(ListView):
 class TagDetailView(DetailView):
     model = Tag
     slug_field = 'slug'
-    raise_exception = True
+
 
 class TagCreateView(LoginRequiredMixin, CreateView):
     model = Tag
@@ -71,6 +72,7 @@ class TagUpdateView(LoginRequiredMixin, UpdateView):
 class TagDeleteView(LoginRequiredMixin, DeleteView):
     model = Tag
     success_url = reverse_lazy('tags')
+    raise_exception = True
 
     # def get(self, request, *args, **kwargs):
     #     return self.post(request, *args, **kwargs)
