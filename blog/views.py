@@ -21,9 +21,9 @@ class PostListView(ListView):
     paginate_by = 2
 
     def get_queryset(self):
-        search_query = self.request.GET.get('search', '')
+        query = self.request.GET.get('q', '')
         post_list = Post.objects.filter(
-            Q(title__icontains=search_query)|Q(body__icontains=search_query)
+            Q(title__icontains=query)|Q(body__icontains=query)
         )
         return post_list
 
