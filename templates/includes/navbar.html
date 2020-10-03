@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 serif">
+    <div class="container">
+
+        <a href="{{ home_url }}
+      " class="navbar-brand">
+            <i class="fab fa-blogger-b px-2"></i>
+            Блог
+        </a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item px-2">
+                    <a href="{{ home_url }}" class="nav-link {% if request.path == home_url %} active {% endif %}">
+                        Домашняя
+                    </a>
+                </li>
+                <li class="nav-item px-2 {% if request.path == posts_url %} active {% endif %}">
+                    <a href="{{ posts_url }}
+            " class="nav-link">
+                        Посты
+                    </a>
+                </li>
+                <li class="nav-item px-2 {% if request.path == tags_url %} active {% endif %}">
+                    <a href="{{ tags_url }}
+            " class="nav-link">
+                        Тэги
+                    </a>
+                </li>
+                {% if request.user.is_authenticated and request.user.is_staff %}
+                <li class="nav-item px-2">
+                    <a href="/admin"
+                       class="nav-link">
+                        Админ
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+
+            <!-- Авторизация -->
+            <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated and request.user.is_staff %}
+                <li class="nav-item">
+                    <a href="" class="nav-link active">
+                        <i class="fas fa-sign-in-alt px-1"></i>
+                        Выйти
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="" class="nav-link active">
+                        <i class="fas fa-sign-out-alt px-1"></i>
+                        Войти
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item px-2">
+                    <a href=""
+                       class="nav-link active">
+                        <i class="fas fa-user-plus px-1"></i>
+                        Регистрация
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

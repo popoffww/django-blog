@@ -1,0 +1,24 @@
+<section class="py-4 mx-auto mb-4 bg-light">
+    {% if request.user.is_authenticated and request.user.is_staff %}
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-3">
+                <a href="{% url 'post_create' %}" class="btn btn-primary btn-block">
+                    <i class="fas fa-plus"></i> Создать пост
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="{% url 'tag_create' %}"
+                   class="btn btn-success btn-block">
+                    <i class="fas fa-plus"></i> Создать тэг
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-warning btn-block orange text-white">
+                    <i class="fas fa-plus"></i> Добавить пользователя
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
