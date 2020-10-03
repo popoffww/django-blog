@@ -23,7 +23,7 @@ class PostListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q', '')
         post_list = Post.objects.filter(
-            Q(title__icontains=query)|Q(body__icontains=query)
+            Q(title__icontains=query) | Q(body__icontains=query)
         )
         return post_list
 
@@ -39,12 +39,14 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('posts')
     raise_exception = True
 
+
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'blog/post_update.html'
     success_url = reverse_lazy('posts')
     raise_exception = True
+
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
@@ -71,12 +73,14 @@ class TagCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('tags')
     raise_exception = True
 
+
 class TagUpdateView(LoginRequiredMixin, UpdateView):
     model = Tag
     form_class = TagForm
     template_name = 'blog/tag_update.html'
     success_url = reverse_lazy('tags')
     raise_exception = True
+
 
 class TagDeleteView(LoginRequiredMixin, DeleteView):
     model = Tag
