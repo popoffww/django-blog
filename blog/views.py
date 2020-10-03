@@ -5,6 +5,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.models import Q
 
 from .models import Post, Tag
 from .forms import PostForm, TagForm
@@ -18,7 +19,13 @@ class PostListView(ListView):
     model = Post
     queryset = Post.objects.filter(draft=False)
     paginate_by = 2
-    model = Post
+
+    def get_queryset(self):
+        search_query = self.request.GET.get('search', '')
+        post_list = Post.objects.filter(
+            Q(title__icontains=search_query)|Q(body__icontains=search_query)
+        )
+        return post_list
 
 
 class PostDetailView(DetailView):

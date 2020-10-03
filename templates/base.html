@@ -114,15 +114,16 @@
                         </h1>
                     </div>
                     <div class="col-md-5 offset-1 py-2">
-                        <div class="input-group">
-                            <input name="search"
+                        <form action="{% url 'posts' %}"
+                              class="input-group">
+                              <input name="search"
                                    type="text"
                                    class="form-control"
-                                   placeholder="Искать пост">
-                            <div class="input-group-append">
+                                   placeholder="Регистрозависимый поиск">
+                             <div class="input-group-append">
                                 <button class="btn btn-outline-light">Поиск</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 {% endif %}
