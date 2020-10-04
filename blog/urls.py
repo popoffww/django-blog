@@ -3,6 +3,7 @@ from .views import *
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
+    path('master/', MasterPageView.as_view(), name='master'),
     path('posts/', PostListView.as_view(), name='posts'),
     path('post/create', PostCreateView.as_view(), name='post_create'),
     path('post/<str:slug>/update/', PostUpdateView.as_view(), name='post_update'),

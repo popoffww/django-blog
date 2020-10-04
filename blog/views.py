@@ -15,6 +15,10 @@ class HomePageView(TemplateView):
     template_name = 'blog/home.html'
 
 
+class MasterPageView(TemplateView):
+    template_name = 'blog/master.html'
+
+
 class PostListView(ListView):
     model = Post
     queryset = Post.objects.filter(draft=False)
