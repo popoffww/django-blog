@@ -103,6 +103,14 @@
     margin-left: 60px;
 }
 
+.layout-social .layout-icon {
+    font-size: 2em;
+}
+
+.site-footer {
+    margin-top: 350px;
+}
+
 @media (min-width: 1199px) {
   .port-item {
     padding: 3em !important;
