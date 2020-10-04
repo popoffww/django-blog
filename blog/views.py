@@ -22,7 +22,7 @@ class MasterPageView(TemplateView):
 class PostListView(ListView):
     model = Post
     queryset = Post.objects.filter(draft=False)
-    paginate_by = 2
+    paginate_by = 3
 
     def get_queryset(self):
         query = self.request.GET.get('q', '')
