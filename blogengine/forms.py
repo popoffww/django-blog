@@ -1,7 +1,8 @@
 from django import forms
-from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.hashers import check_password
 from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model, authenticate
+User = get_user_model()
 
 
 class UserLoginForm(forms.Form):
@@ -9,7 +10,6 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     def clean(self, *args, **kwargs):
-        User = get_user_model()
         username = self.cleaned_data.get('username').strip()
         password = self.cleaned_data.get('password').strip()
         if username and password:
