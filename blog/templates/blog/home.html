@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% url 'home' as home_url %}
-{% url 'posts' as posts_url %}
-{% url 'tags' as tags_url %}
 
 {% block title %}
 {{ block.super }} - Главная
@@ -52,7 +49,11 @@
                     </h4>
                     <a href="{{ master_url }}"
                        class="btn btn-outline-light btn-sm">
-                        Администраторы
+                        Админы
+                    </a>
+                     <a href="{{ users_url }}"
+                       class="btn btn-outline-light btn-sm">
+                        В системе
                     </a>
                 </div>
             </div>

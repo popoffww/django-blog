@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ block.super }} - Пользователи
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10">
+                <div class="jumbotron py-4">
+                    {% for user in username %}
+                    <div class="d-inline lead serif tag-size px-2">
+
+                        <a href="{{ tag.get_absolute_url }}"
+                           class="text-decoration-none text-dark">
+                            {{ user.username}}
+                            <!--&#10060;-->
+                        </a>
+
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

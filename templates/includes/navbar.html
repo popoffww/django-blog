@@ -57,14 +57,14 @@
                         Войти
                     </a>
                 </li>
-                {% endif %}
                 <li class="nav-item px-2">
-                    <a href=""
+                    <a href="{% url 'register' %}"
                        class="nav-link active">
                         <i class="fas fa-user-plus px-1"></i>
                         Регистрация
                     </a>
                 </li>
+                {% endif %}
             </ul>
 
         </div>

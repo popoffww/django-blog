@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.hashers import check_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model, authenticate
+
 User = get_user_model()
 
 
@@ -21,3 +22,29 @@ class UserLoginForm(forms.Form):
         user = authenticate(username=username, password=password)
         if not user:
             raise forms.ValidationError('Данный аккаунт отключен')
+
+
+class UserRegistrationForm(forms.ModelForm):
+    username = forms.CharField(label='Логин',
+                               widget=forms.TextInput(
+                               attrs={'class': 'form-control'}
+                               ))
+    password = forms.CharField(label='Пароль',
+                               widget=forms.PasswordInput(
+                               attrs={'class': 'form-control'}
+                               ))
+    password_confirm = forms.CharField(label='Повторить пароль',
+                                widget=forms.PasswordInput(
+                                attrs={'class': 'form-control'}
+                                ))
+
+    class Meta:
+        model = User
+        fields = ('username',)
+
+    def clean_password_confirm(self):
+        data = self.cleaned_data
+        if data['password'] != data['password_confirm']:
+            raise forms.ValidationError('Пароли не совпадают')
+
+        return data['password_confirm']
